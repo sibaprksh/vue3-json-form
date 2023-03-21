@@ -17,9 +17,6 @@ setTimeout(() => {
   app.use(COMPONENTS);
   app.mixin(SCOPED_CSS);
 
-  console.log('params', params);
-  app.config.globalProperties.params = params;
-
   app
     .component('app-view', {
       data() {
