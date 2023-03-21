@@ -1,3 +1,86 @@
-h1, h2 {
-  font-family: Lato;
+/* 
+ * Floating label 
+ * ===================================================
+ */
+.has-float-label {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.has-float-label .form-control:focus {
+  box-shadow: none !important;
+  border-color: var(--color1, #86b7fe);
+}
+.has-float-label .form-control:placeholder-shown:not(:focus) + * {
+  top: 50%;
+  transform: translateY(-50%);
+  /* font-size: 16px !important; */
+  opacity: 0.45;
+  vertical-align: middle !important;
+  /* font-family: Graphik-Regular !important; */
+  color: #000000 !important;
+}
+.has-float-label label,
+.has-float-label > span {
+  position: absolute;
+  cursor: text;
+  font-size: var(--input-font);
+  opacity: 1;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  top: -0.5em;
+  left: 0.75rem;
+  z-index: 3;
+  line-height: 1;
+  padding: 0 1px;
+  color: var(--color1, #484eea) !important;
+  /* font-family: Graphik-Medium !important; */
+  /* font-weight: 400; */
+}
+/* .has-float-label>input:invalid~span {
+                    color: #dc3545 !important;
+                }
+                .has-float-label>input:valid~span {
+                } */
+.has-float-label label::after,
+.has-float-label > span::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  background: #fff;
+  height: 2px;
+  top: 50%;
+  left: -0.2em;
+  right: -0.2em;
+  z-index: -1;
+}
+.has-float-label .form-control:placeholder-shown:not(:focus) + *::after {
+  background: transparent;
+}
+
+/* 
+ * Validations
+ * ============================================ 
+ */
+.has-error-msg {
+  display: none;
+  color: #dc3545;
+}
+.was-validated .has-error-msg {
+  display: block;
+}
+
+.was-validated .dropdown-content.has-error {
+}
+
+/* hide success/error green/red border and icon */
+.was-validated .form-control:valid,
+.was-validated .form-control:invalid {
+  /* border-color: unset; */
+  padding-right: unset;
+  background-image: unset;
+  background-repeat: unset;
+  background-position: unset;
+  background-size: unset;
 }

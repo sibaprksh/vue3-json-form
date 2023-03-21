@@ -1,5 +1,64 @@
-{
-  "id": 1,
-  "name": "John Doe",
-  "age": 12
-}
+[
+  {
+    "type": "app-group",
+    "templateOptions": {
+      "wrapper": "wrapper-3"
+    },
+    "group": [
+      {
+        "key": "Pay_Date__c",
+        "templateOptions": {
+          "wrapperClassName": "pb-4 px-md-4 col-12 field-control-Pay_Date__c col-md-6"
+        },
+        "atts": {
+          "type": "date",
+          "defaultValue": "2023-01-31 00:00:00",
+          "className": "form-control",
+          "placeholder": "Pay Date"
+        },
+        "type": "float-input",
+      },
+      {
+        "key": "Total_Revenue__c",
+        "templateOptions": {
+          "wrapperClassName": "pb-4 px-md-4 col-12 field-control-Total_Revenue__c col-md-6"
+        },
+        "atts": {
+          "defaultValue": "",
+          "disabled": true,
+          "className": "form-control",
+          "placeholder": "Total Revenue %",
+          "type": "tel",
+          "size": "50"
+        },
+        "type": "float-input",
+        "events": [
+          {
+            "name": "set",
+            "value": "Util.get(model, 'Total_Revenue__c', '').replace(/[^0-9.]/g, '')"
+          },
+          {
+            "name": "input",
+            "value": "Util.get(model, 'Total_Revenue__c', '').replace(/[^0-9.]/g, '')"
+          }          
+        ],
+        "validation": {
+          "validators": {
+            "decimal": {
+              "fn": "isDecimalNumber",
+              "options": {
+                "max": 100
+              }
+            }
+          },
+          "messages": [
+            {
+              "name": "decimal",
+              "msg": "Required valid percentage value"
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
