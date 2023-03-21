@@ -6,16 +6,6 @@ console.log({ data });
 import './utils.js';
 import { Util, COMPONENTS, INPUT_MIXIN, SCOPED_CSS } from './json-renderer.js';
 
-const _qus = new URLSearchParams(location.search);
-const params = {
-  model: _qus.get('model') == 'true',
-  schema: _qus.get('schema') == 'true',
-  debug: _qus.get('debug') == 'true',
-  dev: _qus.get('dev') == 'true',
-  debugVue: _qus.get('debug-vue') == 'true',
-  console: _qus.get('console') == 'true',
-};
-
 /**
  * App code
  */
@@ -27,7 +17,7 @@ setTimeout(() => {
   app.use(COMPONENTS);
   app.mixin(SCOPED_CSS);
 
-  params.console && console.log('params', params);
+  console.log('params', params);
   app.config.globalProperties.params = params;
 
   app
