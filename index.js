@@ -136,11 +136,52 @@ setTimeout(() => {
     .component('wrapper-3', {
       template: `
       <div class="col-6">
-          <div class="border me-0 pt-4 row">
-              <slot></slot>
+          <div class="border me-0 row">
+            <div class="bg-info mb-4 ps-4 pt-0"><h3>This is wrapper header</h3></div>
+            <slot></slot>
           </div>
       </div>
       `,
+    })
+    .component('app-group', {
+      props: {
+        schema: Array,
+        model: {
+          type: Object,
+          default: () => ({}),
+        },
+        form: Object,
+      },
+      emits: ['updateModel'],
+      data() {
+        return {
+          cmodel: this.model,
+          parentForm: { parent: this.form },
+        };
+      },
+      watch: {
+        model: {
+          handler(newVal, oldVal) {
+            this.cmodel = newVal;
+          },
+          deep: true,
+          immediate: true,
+        },
+        cmodel: {
+          handler(newVal, oldVal) {
+            this.$emit('updateModel', newVal);
+          },
+          deep: true,
+          immediate: true,
+        },
+      },
+      template: `
+            <render-controls
+                :form="parentForm"
+                :schema="schema.group"
+                :model="cmodel"
+                @updateModel="cmodel = $event"></render-controls>
+        `,
     });
 
   app.mount('#app');

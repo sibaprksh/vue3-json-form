@@ -1,4 +1,4 @@
-function isDecimalNumber({ options }) {
+window.isDecimalNumber = function ({ options }) {
   const val = this.value;
   const { max = Infinity, mantissa } = options;
   if (val > max) return false;
@@ -10,4 +10,4 @@ function isDecimalNumber({ options }) {
     if (splt[1].length < minlength) return false;
   }
   return true;
-}
+};
